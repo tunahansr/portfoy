@@ -1,0 +1,147 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2");
+      font-weight: 200 800;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("assets/fonts/bricolage-grotesque-latin-ext-opsz-normal.woff2") format("woff2");
+      font-weight: 200 800;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-latin-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-latin-ext-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-latin-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-latin-ext-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-latin-ext-400-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #end-block {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    #end-l1 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 104px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: #f3f5f8;
+      white-space: nowrap;
+    }
+    #end-l1 span {
+      display: inline-block;
+      margin-right: 0.24em;
+    }
+    #end-l1 span:last-child {
+      margin-right: 0;
+    }
+    #end-l2 {
+      margin-top: 4px;
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-size: 132px;
+      font-weight: 400;
+      line-height: 1.05;
+      color: #45e0f0;
+      white-space: nowrap;
+    }
+    #end-tag {
+      margin-top: 52px;
+      font-family: "Geist Mono", monospace;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: #a3adbd;
+      white-space: nowrap;
+    }
+  </style>
+  <div
+    id="root"
+    data-composition-id="end"
+    data-width="1920"
+    data-height="1080"
+    data-composition-variables='[{"id":"line1","type":"string","label":"Satır 1","default":"Tüm sipariş kanalları."},{"id":"line2","type":"string","label":"Satır 2","default":"Tek merkez."}]'
+  >
+    <div id="end-block" data-layout-allow-overlap>
+      <h2 id="end-l1"><span>Tüm</span><span>sipariş</span><span>kanalları.</span></h2>
+      <div id="end-l2" data-var-text="line2">Tek merkez.</div>
+      <div id="end-tag">KAREKOD ENTEGRASYON</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(
+        "#end-l1 span",
+        { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out", stagger: 0.08 },
+        0.2,
+      );
+      tl.fromTo(
+        "#end-l2",
+        { opacity: 0, filter: "blur(10px)", scale: 1.04 },
+        { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.5, ease: "expo.out" },
+        0.45,
+      );
+      tl.fromTo("#end-tag", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 0.6);
+      tl.set({}, {}, 2.7);
+      window.__timelines["end"] = tl;
+    })();
+  </script>
+</template>

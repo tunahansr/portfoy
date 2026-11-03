@@ -1,0 +1,568 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2");
+      font-weight: 200 800;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("assets/fonts/bricolage-grotesque-latin-ext-opsz-normal.woff2") format("woff2");
+      font-weight: 200 800;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-latin-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-latin-ext-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-latin-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-latin-ext-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-latin-ext-400-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #07090d;
+      font-family: "Geist", sans-serif;
+      color: #f3f5f8;
+    }
+    #net-stage {
+      position: absolute;
+      inset: 0;
+    }
+    #net-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 55% at 50% 48%, rgba(16, 28, 64, 0.9) 0%, rgba(10, 16, 34, 0.6) 45%, rgba(7, 9, 13, 0) 100%),
+        #07090d;
+    }
+    #net-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(31, 40, 56, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 40, 56, 0.35) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 55% 50% at 50% 50%, #000 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 50%, #000 0%, transparent 100%);
+      opacity: 0.6;
+    }
+    #net-lines,
+    #net-packets {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: visible;
+    }
+    #net-packets {
+      z-index: 5;
+    }
+    .net-eyebrow {
+      position: absolute;
+      font-family: "Geist Mono", monospace;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #a3adbd;
+      white-space: nowrap;
+    }
+    .net-chip {
+      position: absolute;
+      left: 192px;
+      width: 380px;
+      height: 84px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 26px;
+      border-radius: 16px;
+      border: 1px solid #2c374c;
+      background: #0f1521;
+      font-size: 31px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .net-chip i {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #6e7889;
+      flex: none;
+    }
+    #net-hub {
+      position: absolute;
+      left: 712px;
+      top: 180px;
+      width: 500px;
+      height: 586px;
+      border-radius: 28px;
+      border: 1px solid #2c374c;
+      background: linear-gradient(180deg, #111a2c 0%, #0c1220 100%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(61, 123, 255, 0.08);
+      z-index: 2;
+    }
+    #net-hub-ring {
+      position: absolute;
+      inset: -1px;
+      border-radius: 28px;
+      border: 1.5px solid #3d7bff;
+      opacity: 0;
+    }
+    #net-hub-head {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      top: 30px;
+    }
+    #net-hub-title {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      white-space: nowrap;
+    }
+    #net-hub-sub {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #a3adbd;
+      white-space: nowrap;
+    }
+    #net-hub-sub i {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ffb547;
+      box-shadow: 0 0 10px rgba(255, 181, 71, 0.8);
+    }
+    .net-stage {
+      position: absolute;
+      left: 52px;
+      width: 424px;
+      height: 92px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 22px;
+      border-radius: 16px;
+      border: 1px solid #1f2838;
+      background: rgba(7, 9, 13, 0.45);
+      white-space: nowrap;
+    }
+    .net-stage .glow {
+      position: absolute;
+      inset: -1px;
+      border-radius: 16px;
+      border: 1.5px solid #45e0f0;
+      background: rgba(69, 224, 240, 0.09);
+      box-shadow: 0 0 28px rgba(69, 224, 240, 0.18);
+      opacity: 0;
+    }
+    .net-stage b {
+      position: relative;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      font-weight: 500;
+      color: #45e0f0;
+      width: 40px;
+    }
+    .net-stage span {
+      position: relative;
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #f3f5f8;
+    }
+    #net-track {
+      position: absolute;
+      left: 30px;
+      top: 188px;
+      width: 2px;
+      height: 384px;
+      background: linear-gradient(180deg, #2c374c, #1f2838);
+    }
+    #net-target {
+      position: absolute;
+      left: 1356px;
+      top: 440px;
+      width: 372px;
+      height: 140px;
+      border-radius: 20px;
+      border: 1px solid #2c374c;
+      background: #0f1521;
+      padding: 24px 28px;
+      z-index: 2;
+    }
+    #net-target-ring {
+      position: absolute;
+      inset: -1px;
+      border-radius: 20px;
+      border: 1.5px solid #ffb547;
+      box-shadow: 0 0 34px rgba(255, 181, 71, 0.25);
+      opacity: 0;
+    }
+    #net-target-title {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 44px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    #net-target-sub {
+      margin-top: 14px;
+      font-size: 29px;
+      color: #a3adbd;
+      white-space: nowrap;
+    }
+    #net-log {
+      position: absolute;
+      left: 1356px;
+      top: 676px;
+      width: 372px;
+      height: 214px;
+      border-radius: 20px;
+      border: 1px solid #1f2838;
+      background: rgba(7, 9, 13, 0.85);
+      overflow: hidden;
+      z-index: 2;
+    }
+    #net-log-list {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 18px;
+    }
+    .net-log-line {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #a3adbd;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .net-log-line em {
+      font-style: normal;
+      color: #45e0f0;
+    }
+  </style>
+  <div id="root" data-composition-id="net" data-width="1920" data-height="1080">
+    <div id="net-stage">
+      <div id="net-bg"></div>
+      <div id="net-grid"></div>
+      <svg id="net-lines" viewBox="0 0 1920 1080" data-layout-ignore>
+        <path id="net-l0" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+        <path id="net-l1" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+        <path id="net-l2" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+        <path id="net-l3" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+        <path id="net-lout" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+      </svg>
+
+      <div id="net-eyebrow-in" class="net-eyebrow" style="left: 192px; top: 212px">SİPARİŞ KANALLARI</div>
+      <div id="net-ch0" class="net-chip" style="top: 263px"><i></i><span>Yemeksepeti</span></div>
+      <div id="net-ch1" class="net-chip" style="top: 373px"><i></i><span>Trendyol Go Yemek</span></div>
+      <div id="net-ch2" class="net-chip" style="top: 483px"><i></i><span>Trendyol Go Market</span></div>
+      <div id="net-ch3" class="net-chip" style="top: 593px"><i></i><span>Migros Yemek</span></div>
+
+      <div id="net-hub">
+        <div id="net-hub-ring"></div>
+        <div id="net-hub-head">
+          <div id="net-hub-title">Karekod Entegrasyon</div>
+          <div id="net-hub-sub"><i></i>entegrasyon merkezi</div>
+        </div>
+        <div id="net-track"></div>
+        <div id="net-s0" class="net-stage" style="top: 142px"><div class="glow"></div><b>01</b><span>webhook</span></div>
+        <div id="net-s1" class="net-stage" style="top: 250px"><div class="glow"></div><b>02</b><span>doğrulama</span></div>
+        <div id="net-s2" class="net-stage" style="top: 358px"><div class="glow"></div><b>03</b><span>şube eşleme</span></div>
+        <div id="net-s3" class="net-stage" style="top: 466px"><div class="glow"></div><b>04</b><span>sipariş senkronizasyonu</span></div>
+      </div>
+
+      <div id="net-eyebrow-out" class="net-eyebrow" style="left: 1356px; top: 389px">HEDEF</div>
+      <div id="net-target">
+        <div id="net-target-ring"></div>
+        <div id="net-target-title">POS / ERP</div>
+        <div id="net-target-sub">işletmenin kendi sistemi</div>
+      </div>
+      <div id="net-eyebrow-log" class="net-eyebrow" style="left: 1356px; top: 626px">LOG</div>
+      <div id="net-log" data-layout-allow-overflow>
+        <div id="net-log-list"></div>
+      </div>
+
+      <svg id="net-packets" viewBox="0 0 1920 1080" data-layout-ignore></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const SVGNS = "http://www.w3.org/2000/svg";
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+      const prog = (t, s, d) => clamp((t - s) / d, 0, 1);
+      const eIO = gsap.parseEase("power2.inOut");
+      const eOut = gsap.parseEase("power3.out");
+
+      // Geometry (matches the CSS boxes above).
+      const HUB_X = 712;
+      const TRACK_X = HUB_X + 31;
+      const ROW_Y = [180 + 142 + 46, 180 + 250 + 46, 180 + 358 + 46, 180 + 466 + 46];
+      const ENTRY_Y = ROW_Y[0];
+      const EXIT_Y = 180 + 586 - 16;
+      const HUB_R = HUB_X + 500;
+      const TGT = { x: 1356, y: 510 };
+      const CH_Y = [305, 415, 525, 635];
+
+      const inCurves = CH_Y.map((y) => [
+        [572, y],
+        [650, y],
+        [640, ENTRY_Y],
+        [HUB_X, ENTRY_Y],
+      ]);
+      const outCurve = [
+        [HUB_R, EXIT_Y],
+        [1300, EXIT_Y],
+        [1290, TGT.y],
+        [TGT.x, TGT.y],
+      ];
+      const bez = (c, u) => {
+        const v = 1 - u;
+        return [
+          v * v * v * c[0][0] + 3 * v * v * u * c[1][0] + 3 * v * u * u * c[2][0] + u * u * u * c[3][0],
+          v * v * v * c[0][1] + 3 * v * v * u * c[1][1] + 3 * v * u * u * c[2][1] + u * u * u * c[3][1],
+        ];
+      };
+      const pathD = (c) =>
+        "M" + c[0].join(",") + " C" + c[1].join(",") + " " + c[2].join(",") + " " + c[3].join(",");
+      inCurves.forEach((c, i) => document.getElementById("net-l" + i).setAttribute("d", pathD(c)));
+      document.getElementById("net-lout").setAttribute("d", pathD(outCurve));
+
+      // Order packets: [channel, emit time]. Illustrative flow, not real traffic.
+      const SCHEDULE = [
+        [0, 1.0],
+        [1, 1.4],
+        [2, 1.8],
+        [3, 2.2],
+        [1, 2.75],
+        [0, 3.25],
+        [3, 3.75],
+        [2, 4.2],
+      ];
+      const T_IN = 0.7;
+      const T_HUB = 1.15;
+      const T_OUT = 0.55;
+
+      const packets = SCHEDULE.map(([ch, at]) => {
+        const g = document.createElementNS(SVGNS, "g");
+        const halo = document.createElementNS(SVGNS, "circle");
+        halo.setAttribute("r", "16");
+        halo.setAttribute("fill", "rgba(69,224,240,0.18)");
+        const dot = document.createElementNS(SVGNS, "rect");
+        dot.setAttribute("x", "-7");
+        dot.setAttribute("y", "-7");
+        dot.setAttribute("width", "14");
+        dot.setAttribute("height", "14");
+        dot.setAttribute("rx", "3");
+        dot.setAttribute("fill", "#45e0f0");
+        g.appendChild(halo);
+        g.appendChild(dot);
+        g.setAttribute("opacity", "0");
+        document.getElementById("net-packets").appendChild(g);
+        return { ch, at, g, hubAt: at + T_IN, outAt: at + T_IN + T_HUB, doneAt: at + T_IN + T_HUB + T_OUT };
+      });
+
+      // Log lines appear at real events of the flow above.
+      const events = [];
+      packets.forEach((p) => {
+        events.push({ at: p.hubAt, text: "POST /webhooks", code: "200" });
+        events.push({ at: p.doneAt, text: "sipariş senkron", code: "ok" });
+      });
+      events.sort((a, b) => a.at - b.at);
+      const list = document.getElementById("net-log-list");
+      events.forEach((ev, i) => {
+        const row = document.createElement("div");
+        row.className = "net-log-line";
+        row.id = "net-log-" + i;
+        row.innerHTML = "<span></span><em></em>";
+        row.firstChild.textContent = ev.text;
+        row.lastChild.textContent = ev.code;
+        list.appendChild(row);
+        ev.el = row;
+      });
+      const VISIBLE = 4;
+      const LINE_H = 44;
+
+      const stageGlow = [0, 1, 2, 3].map((i) => document.querySelector("#net-s" + i + " .glow"));
+      const hubRing = document.getElementById("net-hub-ring");
+      const tgtRing = document.getElementById("net-target-ring");
+      const chipDots = [0, 1, 2, 3].map((i) => document.querySelector("#net-ch" + i + " i"));
+
+      // Route inside the hub: down the track past each stage, then along the floor.
+      function hubPos(u) {
+        const vert = EXIT_Y - ENTRY_Y;
+        const horiz = HUB_R - TRACK_X;
+        const lead = 31;
+        const total = lead + vert + horiz;
+        let d = eIO(u) * total;
+        if (d < lead) return [HUB_X + d, ENTRY_Y];
+        d -= lead;
+        if (d < vert) return [TRACK_X, ENTRY_Y + d];
+        d -= vert;
+        return [TRACK_X + d, EXIT_Y];
+      }
+
+      function draw(t) {
+        const stage = [0, 0, 0, 0];
+        let hub = 0;
+        let tgt = 0;
+        const chip = [0, 0, 0, 0];
+        packets.forEach((p) => {
+          let pos = null;
+          let a = 1;
+          if (t >= p.at && t < p.hubAt) {
+            const u = eIO((t - p.at) / T_IN);
+            pos = bez(inCurves[p.ch], u);
+            a = clamp((t - p.at) / 0.12, 0, 1);
+          } else if (t >= p.hubAt && t < p.outAt) {
+            pos = hubPos((t - p.hubAt) / T_HUB);
+            ROW_Y.forEach((ry, k) => {
+              const near = 1 - Math.abs(pos[1] - ry) / 70;
+              if (pos[0] <= TRACK_X + 2) stage[k] = Math.max(stage[k], near);
+            });
+          } else if (t >= p.outAt && t < p.doneAt) {
+            pos = bez(outCurve, eIO((t - p.outAt) / T_OUT));
+            a = 1 - clamp((t - (p.doneAt - 0.08)) / 0.08, 0, 1);
+          }
+          hub = Math.max(hub, 1 - Math.abs(t - p.hubAt) / 0.35);
+          tgt = Math.max(tgt, t >= p.doneAt ? 1 - (t - p.doneAt) / 0.6 : 0);
+          chip[p.ch] = Math.max(chip[p.ch], 1 - Math.abs(t - p.at) / 0.3);
+          if (pos) {
+            p.g.setAttribute("transform", "translate(" + pos[0].toFixed(1) + "," + pos[1].toFixed(1) + ")");
+            p.g.setAttribute("opacity", a.toFixed(3));
+          } else {
+            p.g.setAttribute("opacity", "0");
+          }
+        });
+        stageGlow.forEach((el, k) => (el.style.opacity = clamp(stage[k], 0, 1).toFixed(3)));
+        hubRing.style.opacity = (0.75 * clamp(hub, 0, 1)).toFixed(3);
+        tgtRing.style.opacity = clamp(tgt, 0, 1).toFixed(3);
+        chipDots.forEach((el, k) => {
+          const c = clamp(chip[k], 0, 1);
+          el.style.background = c > 0 ? "rgba(69,224,240," + (0.35 + 0.65 * c).toFixed(3) + ")" : "#6e7889";
+        });
+
+        // Log: each line fades in at its event; the list scrolls one line per event past the fourth.
+        let scroll = 0;
+        events.forEach((ev, i) => {
+          if (i >= VISIBLE) scroll += LINE_H * eOut(prog(t, ev.at - 0.05, 0.3));
+        });
+        events.forEach((ev, i) => {
+          const k = eOut(prog(t, ev.at, 0.3));
+          // Lines leaving the top of the panel fade out instead of being cut.
+          const top = i * LINE_H - scroll;
+          const keep = clamp(1 + top / (LINE_H * 0.6), 0, 1);
+          ev.el.style.opacity = (k * keep).toFixed(3);
+        });
+        list.style.transform = "translateY(" + (-scroll).toFixed(2) + "px)";
+      }
+
+      const clock = { t: 0 };
+      draw(0);
+      const tl = gsap.timeline({ paused: true });
+
+      // Build: channels, hub, target, then the lines draw on.
+      tl.fromTo(
+        ".net-chip",
+        { opacity: 0, x: -28 },
+        { opacity: 1, x: 0, duration: 0.7, ease: "expo.out", stagger: 0.08 },
+        0.05,
+      );
+      tl.fromTo("#net-eyebrow-in", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.05);
+      tl.fromTo(
+        "#net-hub",
+        { opacity: 0, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" },
+        0.2,
+      );
+      tl.fromTo(
+        ".net-stage",
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "expo.out", stagger: 0.07 },
+        0.45,
+      );
+      tl.fromTo(
+        "#net-eyebrow-out, #net-target, #net-eyebrow-log, #net-log",
+        { opacity: 0, x: 28 },
+        { opacity: 1, x: 0, duration: 0.7, ease: "expo.out", stagger: 0.08 },
+        0.4,
+      );
+      tl.fromTo(
+        "#net-lines path",
+        { strokeDasharray: "100 120", strokeDashoffset: 110 },
+        { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut", stagger: 0.06 },
+        0.55,
+      );
+
+      // Flow clock.
+      tl.fromTo(clock, { t: 0 }, { t: 10, duration: 10, ease: "none", onUpdate: () => draw(clock.t) }, 0);
+
+      // Hand-off to the end card: the network recedes behind it.
+      tl.fromTo(
+        "#net-stage",
+        { opacity: 1, scale: 1, filter: "blur(0px)" },
+        { opacity: 0.12, scale: 0.97, filter: "blur(10px)", duration: 0.6, ease: "power2.inOut" },
+        7.2,
+      );
+      window.__timelines["net"] = tl;
+    })();
+  </script>
+</template>

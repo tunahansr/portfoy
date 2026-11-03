@@ -1,0 +1,725 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2");
+      font-weight: 200 800;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      src: url("assets/fonts/bricolage-grotesque-latin-ext-opsz-normal.woff2") format("woff2");
+      font-weight: 200 800;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-latin-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/geist-latin-ext-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-latin-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Geist Mono";
+      src: url("assets/fonts/geist-mono-latin-ext-wght-normal.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/instrument-serif-latin-ext-400-italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #07090d;
+      font-family: "Geist", sans-serif;
+      color: #f3f5f8;
+    }
+    #pos-stage {
+      position: absolute;
+      inset: 0;
+    }
+    #pos-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 60% at 30% 50%, rgba(16, 28, 64, 0.75) 0%, rgba(10, 16, 34, 0.45) 50%, rgba(7, 9, 13, 0) 100%),
+        radial-gradient(ellipse 35% 45% at 80% 55%, rgba(16, 28, 64, 0.55) 0%, rgba(7, 9, 13, 0) 100%),
+        #07090d;
+    }
+    .pos-eyebrow {
+      position: absolute;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #a3adbd;
+      white-space: nowrap;
+    }
+
+    /* Order screen */
+    #pos-panel {
+      position: absolute;
+      left: 192px;
+      top: 196px;
+      width: 600px;
+      height: 690px;
+      border-radius: 28px;
+      border: 1px solid #2c374c;
+      background: linear-gradient(180deg, #111a2c 0%, #0c1220 100%);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+    #pos-head {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      top: 26px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #pos-table {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 54px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+    #pos-net {
+      position: relative;
+      width: 250px;
+      height: 52px;
+    }
+    .pos-pill {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid #2c374c;
+      background: #0a1022;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #f3f5f8;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .pos-pill i {
+      display: block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #45e0f0;
+      box-shadow: 0 0 10px rgba(69, 224, 240, 0.7);
+    }
+    #pos-pill-off {
+      border-color: rgba(255, 107, 107, 0.55);
+    }
+    #pos-pill-off i {
+      background: #ff6b6b;
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+    }
+    #pos-pill-queue i {
+      background: #a3adbd;
+      box-shadow: none;
+    }
+    #pos-items {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      top: 118px;
+    }
+    .pos-item {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 31px;
+      white-space: nowrap;
+    }
+    .pos-item b {
+      font-weight: 400;
+      color: #a3adbd;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      margin-left: 10px;
+    }
+    .pos-item em {
+      font-style: normal;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #a3adbd;
+    }
+    #pos-total {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      top: 360px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #2c374c;
+      white-space: nowrap;
+    }
+    #pos-total span {
+      font-size: 31px;
+      color: #a3adbd;
+    }
+    #pos-total strong {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 46px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    #pos-split-label {
+      left: 32px;
+      top: 452px;
+    }
+    .pos-part {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 20px;
+      border-radius: 16px;
+      border: 1px solid #1f2838;
+      background: rgba(7, 9, 13, 0.5);
+      white-space: nowrap;
+    }
+    .pos-part .ix {
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #45e0f0;
+    }
+    .pos-part .kind {
+      font-size: 31px;
+      font-weight: 500;
+    }
+    .pos-part .amt {
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #f3f5f8;
+      margin-left: auto;
+    }
+    .pos-part .st {
+      position: relative;
+      width: 196px;
+      height: 40px;
+    }
+    .pos-part .st span {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      white-space: nowrap;
+    }
+    .pos-part .st .wait {
+      color: #a3adbd;
+    }
+    .pos-part .st .ok {
+      color: #45e0f0;
+      opacity: 0;
+    }
+    .pos-part .glow {
+      position: absolute;
+      inset: -1px;
+      border-radius: 16px;
+      border: 1.5px solid #45e0f0;
+      background: rgba(69, 224, 240, 0.07);
+      opacity: 0;
+    }
+
+    /* Links */
+    #pos-links {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: visible;
+    }
+    .pos-lane-label {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      font-weight: 500;
+      color: #f3f5f8;
+      white-space: nowrap;
+    }
+    .pos-lane-label small {
+      font-size: 29px;
+      color: #a3adbd;
+    }
+    .pos-msg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(69, 224, 240, 0.6);
+      background: #0a1022;
+      box-shadow: 0 0 24px rgba(69, 224, 240, 0.18);
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #45e0f0;
+      white-space: nowrap;
+      opacity: 0;
+      z-index: 6;
+    }
+    .pos-dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #45e0f0;
+      box-shadow: 0 0 14px rgba(69, 224, 240, 0.8);
+      opacity: 0;
+      z-index: 6;
+    }
+
+    /* Offline-first stepper */
+    #pos-off {
+      position: absolute;
+      left: 878px;
+      top: 504px;
+      width: 440px;
+      opacity: 0;
+    }
+    .pos-step {
+      position: relative;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 22px;
+      border-radius: 14px;
+      border: 1px solid #1f2838;
+      background: #0b1120;
+      font-size: 31px;
+      font-weight: 500;
+      color: #a3adbd;
+      white-space: nowrap;
+    }
+    .pos-step i {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2c374c;
+    }
+    .pos-step .on {
+      position: absolute;
+      inset: -1px;
+      border-radius: 14px;
+      border: 1.5px solid var(--c);
+      background: var(--bgc);
+      opacity: 0;
+    }
+    .pos-step span,
+    .pos-step i {
+      position: relative;
+    }
+    .pos-chev {
+      height: 26px;
+      display: flex;
+      align-items: center;
+      padding-left: 36px;
+    }
+
+    /* Fiscal device (generic drawing) */
+    #pos-device {
+      position: absolute;
+      left: 1404px;
+      top: 330px;
+      width: 324px;
+      height: 520px;
+    }
+    #pos-dev-body {
+      position: absolute;
+      inset: 0;
+      border-radius: 34px;
+      background: linear-gradient(180deg, #1a2234 0%, #121a29 60%, #0f1521 100%);
+      border: 1px solid #2c374c;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    #pos-dev-ring {
+      position: absolute;
+      inset: -2px;
+      border-radius: 36px;
+      border: 2px solid #ffb547;
+      box-shadow: 0 0 60px rgba(255, 181, 71, 0.3);
+      opacity: 0;
+    }
+    #pos-dev-slot {
+      position: absolute;
+      left: 46px;
+      right: 46px;
+      top: 18px;
+      height: 10px;
+      border-radius: 6px;
+      background: #07090d;
+    }
+    #pos-dev-screen {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      top: 50px;
+      height: 170px;
+      border-radius: 16px;
+      background: #0a1022;
+      border: 1px solid #1f2838;
+      overflow: hidden;
+    }
+    .pos-scr {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .pos-scr small {
+      font-size: 29px;
+      color: #a3adbd;
+    }
+    .pos-scr b {
+      font-weight: 500;
+      color: #45e0f0;
+    }
+    #pos-scr-done b {
+      color: #ffb547;
+    }
+    #pos-keys {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      top: 244px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    #pos-keys i {
+      display: block;
+      height: 46px;
+      border-radius: 10px;
+      background: #1f2838;
+      border: 1px solid #2c374c;
+    }
+    #pos-keys i.k-ok {
+      background: rgba(69, 224, 240, 0.18);
+      border-color: rgba(69, 224, 240, 0.4);
+    }
+    #pos-receipt {
+      position: absolute;
+      left: 58px;
+      width: 208px;
+      bottom: 497px;
+      height: 230px;
+      border-radius: 6px 6px 2px 2px;
+      background: linear-gradient(180deg, #f3f5f8 0%, #e3e7ee 100%);
+      transform-origin: 50% 100%;
+      padding: 18px 18px;
+      overflow: hidden;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.35);
+    }
+    #pos-receipt .r-head {
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      font-weight: 600;
+      color: #07090d;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    #pos-receipt .r-bar {
+      height: 7px;
+      border-radius: 4px;
+      background: #b7bfcc;
+      margin-top: 14px;
+    }
+    #pos-dev-name {
+      position: absolute;
+      left: 1404px;
+      width: 324px;
+      top: 872px;
+      text-align: center;
+      font-size: 31px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    #pos-dev-name span {
+      color: #a3adbd;
+    }
+    #pos-success {
+      position: absolute;
+      left: 1040px;
+      width: 340px;
+      top: 196px;
+      display: flex;
+      justify-content: flex-end;
+      opacity: 0;
+      z-index: 7;
+    }
+    #pos-success div {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 56px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: #1d1608;
+      border: 1.5px solid #ffb547;
+      box-shadow: 0 0 40px rgba(255, 181, 71, 0.25);
+      font-family: "Geist Mono", monospace;
+      font-size: 29px;
+      color: #ffb547;
+      white-space: nowrap;
+    }
+  </style>
+  <div id="root" data-composition-id="pos" data-width="1920" data-height="1080">
+    <div id="pos-stage">
+      <div id="pos-bg"></div>
+
+      <!-- Lanes -->
+      <svg id="pos-links" viewBox="0 0 1920 1080" data-layout-ignore>
+        <path id="pos-lane-a" d="M792 410 L1404 410" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+        <path id="pos-lane-b" d="M792 790 L1404 790" fill="none" stroke="#2c374c" stroke-width="2" pathLength="100" />
+        <path id="pos-lane-b-cut" d="M1192 790 L1308 790" fill="none" stroke="#ff6b6b" stroke-width="2.5" stroke-dasharray="8 10" opacity="0" />
+        <g id="pos-cloud" transform="translate(1250 790)">
+          <circle r="34" fill="#0a1022" stroke="#2c374c" stroke-width="2" />
+          <path d="M-15 8 h28 a9 9 0 0 0 0 -18 a13 13 0 0 0 -25 -2 a8 8 0 0 0 -3 20 z" fill="none" stroke="#a3adbd" stroke-width="2.2" stroke-linejoin="round" />
+        </g>
+      </svg>
+      <div id="pos-eyebrow-ws" class="pos-eyebrow" style="left: 878px; top: 300px">WEBSOCKET</div>
+      <div id="pos-lbl-a" class="pos-lane-label" style="left: 878px; top: 428px">PC-Link <small>yerel</small></div>
+      <div id="pos-lbl-b" class="pos-lane-label" style="left: 878px; top: 808px">Cloud-Link <small>bulut</small></div>
+
+      <!-- Order screen -->
+      <div id="pos-panel">
+        <div id="pos-head">
+          <div id="pos-table">Masa 4</div>
+          <div id="pos-net" data-layout-allow-overlap>
+            <div id="pos-pill-on" class="pos-pill"><i></i>Çevrimiçi</div>
+            <div id="pos-pill-off" class="pos-pill"><i></i>Bağlantı yok</div>
+            <div id="pos-pill-queue" class="pos-pill"><i></i>Kuyrukta</div>
+            <div id="pos-pill-sync" class="pos-pill"><i></i>Senkronize</div>
+          </div>
+        </div>
+        <div id="pos-items">
+          <div class="pos-item"><span>Izgara köfte<b>×2</b></span><em>₺640,00</em></div>
+          <div class="pos-item"><span>Mercimek çorbası<b>×1</b></span><em>₺140,00</em></div>
+          <div class="pos-item"><span>Ayran<b>×2</b></span><em>₺90,00</em></div>
+          <div class="pos-item"><span>Künefe<b>×1</b></span><em>₺210,00</em></div>
+        </div>
+        <div id="pos-total"><span>Toplam</span><strong>₺1.080,00</strong></div>
+        <div id="pos-split-label" class="pos-eyebrow">PARÇALI ÖDEME</div>
+        <div id="pos-part1" class="pos-part" style="top: 500px">
+          <div class="glow"></div>
+          <span class="ix">1/2</span><span class="kind">Kart</span><span class="amt">₺540,00</span>
+          <div class="st"><span class="wait">bekliyor</span><span class="ok"><svg class="ck" width="24" height="24" viewBox="0 0 24 24"><path d="M4 12.5 L9.5 17.5 L20 6.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" /></svg>onaylandı</span></div>
+        </div>
+        <div id="pos-part2" class="pos-part" style="top: 590px">
+          <div class="glow"></div>
+          <span class="ix">2/2</span><span class="kind">Nakit</span><span class="amt">₺540,00</span>
+          <div class="st"><span class="wait">bekliyor</span><span class="ok"><svg class="ck" width="24" height="24" viewBox="0 0 24 24"><path d="M4 12.5 L9.5 17.5 L20 6.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" /></svg>onaylandı</span></div>
+        </div>
+      </div>
+
+      <!-- Offline-first beat -->
+      <div id="pos-off" data-layout-allow-overlap>
+        <div id="pos-step1" class="pos-step" style="--c: #ff6b6b; --bgc: rgba(255, 107, 107, 0.08)"><div class="on"></div><i></i><span>Bağlantı yok</span></div>
+        <div class="pos-chev"><svg width="22" height="14" viewBox="0 0 22 14"><path d="M2 2 L11 11 L20 2" fill="none" stroke="#6e7889" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div id="pos-step2" class="pos-step" style="--c: #a3adbd; --bgc: rgba(163, 173, 189, 0.08)"><div class="on"></div><i></i><span>Kuyrukta</span></div>
+        <div class="pos-chev"><svg width="22" height="14" viewBox="0 0 22 14"><path d="M2 2 L11 11 L20 2" fill="none" stroke="#6e7889" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div id="pos-step3" class="pos-step" style="--c: #45e0f0; --bgc: rgba(69, 224, 240, 0.08)"><div class="on"></div><i></i><span>Senkronize</span></div>
+      </div>
+
+      <!-- Fiscal device -->
+      <div id="pos-device">
+        <div id="pos-receipt" data-layout-allow-overflow data-layout-ignore>
+          <div class="r-head">MALİ FİŞ</div>
+          <div class="r-bar" style="width: 80%"></div>
+          <div class="r-bar" style="width: 64%"></div>
+          <div class="r-bar" style="width: 72%"></div>
+          <div class="r-bar" style="width: 50%"></div>
+          <div class="r-bar" style="width: 86%"></div>
+          <div class="r-bar" style="width: 40%"></div>
+        </div>
+        <div id="pos-dev-body"></div>
+        <div id="pos-dev-ring"></div>
+        <div id="pos-dev-slot"></div>
+        <div id="pos-dev-screen" data-layout-allow-overlap>
+          <div id="pos-scr-ready" class="pos-scr"><small>Mali POS</small><b>Hazır</b></div>
+          <div id="pos-scr-p1" class="pos-scr"><small>Ödeme</small><b>Parça 1/2</b></div>
+          <div id="pos-scr-p2" class="pos-scr"><small>Ödeme</small><b>Parça 2/2</b></div>
+          <div id="pos-scr-done" class="pos-scr"><small>Fiş</small><b>Onaylandı</b></div>
+        </div>
+        <div id="pos-keys">
+          <i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i class="k-ok"></i>
+        </div>
+      </div>
+      <div id="pos-dev-name">Mali POS <span>· Hugin</span></div>
+      <div id="pos-success"><div><svg class="ck" width="24" height="24" viewBox="0 0 24 24"><path d="M4 12.5 L9.5 17.5 L20 6.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" /></svg>Fiş onaylandı</div></div>
+
+      <!-- Moving messages -->
+      <div id="pos-msg1" class="pos-msg">ws · parça 1/2</div>
+      <div id="pos-msg2" class="pos-msg">ws · parça 2/2</div>
+      <div id="pos-ack1" class="pos-dot"></div>
+      <div id="pos-ack2" class="pos-dot"></div>
+      <div id="pos-sync" class="pos-dot"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const IN = "expo.out";
+
+      // Build
+      tl.fromTo("#pos-panel", { opacity: 0, x: -36 }, { opacity: 1, x: 0, duration: 0.8, ease: IN }, 0.05);
+      tl.fromTo(".pos-item", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: IN, stagger: 0.07 }, 0.3);
+      tl.fromTo("#pos-total", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.62);
+      tl.fromTo("#pos-pill-on", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.fromTo("#pos-device, #pos-dev-name", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.8, ease: IN, stagger: 0.06 }, 0.2);
+      tl.fromTo("#pos-scr-ready", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.7);
+      tl.fromTo("#pos-links path:not(#pos-lane-b-cut)", { strokeDasharray: "100 120", strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut", stagger: 0.1 }, 0.55);
+      tl.fromTo("#pos-cloud", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.85);
+      tl.fromTo("#pos-eyebrow-ws, #pos-lbl-a, #pos-lbl-b", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out", stagger: 0.08 }, 0.8);
+
+      // Split payment: the total divides into two parts
+      tl.fromTo("#pos-split-label", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.15);
+      tl.fromTo("#pos-part1", { opacity: 0, y: -40, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: IN }, 1.25);
+      tl.fromTo("#pos-part2", { opacity: 0, y: -130, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: IN }, 1.38);
+
+      // Part 1 over PC-Link
+      const LANE_A = 410;
+      const sendPart = (n, at) => {
+        const msg = "#pos-msg" + n;
+        const ack = "#pos-ack" + n;
+        const part = "#pos-part" + n;
+        tl.fromTo(part + " .glow", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, at - 0.1);
+        tl.fromTo(msg, { opacity: 0, x: 812, y: LANE_A - 25 }, { opacity: 1, duration: 0.15, ease: "none" }, at);
+        tl.fromTo(msg, { x: 812 }, { x: 1150, duration: 0.7, ease: "power2.inOut", immediateRender: false }, at);
+        tl.to(msg, { opacity: 0, duration: 0.12, ease: "none" }, at + 0.62);
+        tl.fromTo("#pos-scr-" + (n === 1 ? "ready" : "p1"), { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "none", immediateRender: false }, at + 0.68);
+        tl.fromTo("#pos-scr-p" + n, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, at + 0.72);
+        tl.fromTo(ack, { opacity: 0, x: 1396, y: LANE_A - 7 }, { opacity: 1, duration: 0.1, ease: "none" }, at + 0.95);
+        tl.fromTo(ack, { x: 1396 }, { x: 786, duration: 0.5, ease: "power2.inOut", immediateRender: false }, at + 0.95);
+        tl.to(ack, { opacity: 0, duration: 0.1, ease: "none" }, at + 1.38);
+        tl.fromTo(part + " .wait", { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "none", immediateRender: false }, at + 1.42);
+        tl.fromTo(part + " .ok", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, at + 1.45);
+        tl.to(part + " .glow", { opacity: 0.35, duration: 0.4, ease: "power2.out" }, at + 1.6);
+      };
+      sendPart(1, 1.8);
+      sendPart(2, 3.0);
+
+      // Receipt prints: the amber success moment
+      tl.fromTo("#pos-scr-p2", { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "none", immediateRender: false }, 4.45);
+      tl.fromTo("#pos-scr-done", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 4.5);
+      tl.fromTo("#pos-receipt", { scaleY: 0 }, { scaleY: 1, duration: 0.9, ease: "power2.out" }, 4.45);
+      tl.fromTo("#pos-dev-ring", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 4.55);
+      tl.fromTo("#pos-success", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: IN }, 4.6);
+      tl.to("#pos-dev-ring", { opacity: 0.25, duration: 0.6, ease: "power2.inOut" }, 5.4);
+
+      // Offline-first: connection drops, the sale waits in the queue, then syncs
+      const OFF = 5.15;
+      tl.to("#pos-pill-on", { opacity: 0, duration: 0.15, ease: "none" }, OFF);
+      tl.fromTo("#pos-pill-off", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, OFF + 0.05);
+      tl.fromTo("#pos-lane-b", { opacity: 1 }, { opacity: 0.25, duration: 0.2, ease: "none", immediateRender: false }, OFF);
+      tl.fromTo("#pos-lane-b-cut", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "none" }, OFF);
+      tl.to("#pos-success", { opacity: 0, duration: 0.3, ease: "power2.in" }, OFF - 0.05);
+      tl.fromTo("#pos-off", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: IN }, OFF);
+      tl.fromTo("#pos-step1 .on", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, OFF + 0.1);
+      tl.fromTo("#pos-step1 i", { backgroundColor: "#2c374c" }, { backgroundColor: "#ff6b6b", duration: 0.2, ease: "none" }, OFF + 0.1);
+
+      tl.to("#pos-pill-off", { opacity: 0, duration: 0.15, ease: "none" }, OFF + 0.55);
+      tl.fromTo("#pos-pill-queue", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, OFF + 0.6);
+      tl.to("#pos-step1 .on", { opacity: 0.25, duration: 0.2, ease: "none" }, OFF + 0.6);
+      tl.fromTo("#pos-step2 .on", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, OFF + 0.6);
+      tl.fromTo("#pos-step2 i", { backgroundColor: "#2c374c" }, { backgroundColor: "#a3adbd", duration: 0.2, ease: "none" }, OFF + 0.6);
+
+      const ON = OFF + 1.1;
+      tl.to("#pos-lane-b", { opacity: 1, duration: 0.2, ease: "none" }, ON);
+      tl.to("#pos-lane-b-cut", { opacity: 0, duration: 0.2, ease: "none" }, ON);
+      tl.fromTo("#pos-sync", { opacity: 0, x: 786, y: 783 }, { opacity: 1, duration: 0.1, ease: "none" }, ON + 0.05);
+      tl.fromTo("#pos-sync", { x: 786 }, { x: 1236, duration: 0.45, ease: "power2.inOut", immediateRender: false }, ON + 0.05);
+      tl.to("#pos-sync", { opacity: 0, duration: 0.1, ease: "none" }, ON + 0.45);
+      tl.to("#pos-pill-queue", { opacity: 0, duration: 0.15, ease: "none" }, ON + 0.45);
+      tl.fromTo("#pos-pill-sync", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, ON + 0.5);
+      tl.to("#pos-step2 .on", { opacity: 0.25, duration: 0.2, ease: "none" }, ON + 0.5);
+      tl.fromTo("#pos-step3 .on", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, ON + 0.5);
+      tl.fromTo("#pos-step3 i", { backgroundColor: "#2c374c" }, { backgroundColor: "#45e0f0", duration: 0.2, ease: "none" }, ON + 0.5);
+
+      // Hand-off to the end card
+      tl.fromTo(
+        "#pos-stage",
+        { opacity: 1, scale: 1, filter: "blur(0px)" },
+        { opacity: 0.12, scale: 0.97, filter: "blur(10px)", duration: 0.6, ease: "power2.inOut" },
+        7.45,
+      );
+      tl.set({}, {}, 10);
+      window.__timelines["pos"] = tl;
+    })();
+  </script>
+</template>

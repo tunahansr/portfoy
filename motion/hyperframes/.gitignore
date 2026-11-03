@@ -1,0 +1,13 @@
+# HyperFrames yerel durum, snapshot ve geçmiş klasörü (makineye özel)
+.hyperframes/
+*/.hyperframes/
+
+# Ham (master) render çıktıları; sitede kullanılan optimize kopyalar public/ altında
+renders/
+*/renders/
+
+# Proje bazlı npm kurulumları (kullanılmıyor, CLI npx ile çalışır)
+node_modules/
+*/node_modules/
+
+# Kaynak HTML, compositions/ ve assets/fonts (OFL lisanslı) commit edilir.
