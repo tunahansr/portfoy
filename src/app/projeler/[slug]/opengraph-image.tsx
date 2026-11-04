@@ -2,7 +2,7 @@ import { getProject, projects } from "@/data/projects";
 import { colors } from "@/lib/brand";
 import { renderOg, ogSize } from "@/lib/og";
 
-export const alt = "Proje önizlemesi — Tunahan Şirin";
+export const alt = "Proje önizlemesi — Tunahan ŞİRİN";
 export const size = ogSize;
 export const contentType = "image/png";
 

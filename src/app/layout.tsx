@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   keywords: t.meta.keywords,
   authors: [{ name: profile.name, url: profile.siteUrl }],
   creator: profile.name,
-  publisher: profile.company.name,
+  publisher: profile.name,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

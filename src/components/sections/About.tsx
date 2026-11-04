@@ -1,5 +1,4 @@
 import { getDictionary } from "@/i18n";
-import { profile } from "@/data/profile";
 import { Reveal } from "@/components/motion/Reveal";
 import { LazyVideo } from "@/components/ui/LazyVideo";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,7 +23,7 @@ export function About() {
                 <LazyVideo
                   src="/videos/brand-intro.mp4"
                   poster="/posters/brand-intro.jpg"
-                  label="Tunahan Şirin kişisel marka tanıtım filmi: veri parçacıkları teknoloji çekirdeğinde birleşir."
+                  label="Tunahan ŞİRİN kişisel marka tanıtım filmi: veri parçacıkları teknoloji çekirdeğinde birleşir."
                   className="aspect-video"
                   fallback={<div className="aspect-video bg-[radial-gradient(60%_80%_at_50%_50%,rgba(61,123,255,0.25),transparent)]" />}
                 />
@@ -44,22 +43,6 @@ export function About() {
                   {p}
                 </p>
               ))}
-            </Reveal>
-
-            <Reveal className="mt-8 flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-5" y={16}>
-              <div data-reveal className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-night font-display text-lg font-semibold text-cyan">
-                K
-              </div>
-              <div data-reveal>
-                <p className="font-medium">
-                  <a href={profile.company.url} target="_blank" rel="noopener" className="underline decoration-line-strong underline-offset-4 hover:decoration-cyan">
-                    {profile.company.name}
-                  </a>
-                </p>
-                <p className="text-sm text-muted">
-                  {t.about.companyNote} · {profile.location.city}, {profile.location.region}
-                </p>
-              </div>
             </Reveal>
 
             <h3 className="eyebrow mt-16">{t.about.capabilitiesTitle}</h3>

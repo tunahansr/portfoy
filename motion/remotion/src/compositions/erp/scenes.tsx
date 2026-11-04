@@ -397,7 +397,7 @@ export const TitleScene: React.FC = () => {
             translate: `0 ${interpolate(frame, [8, 24], [10, 0], { ...clamp, easing: easeOut })}px`,
           }}
         >
-          KAREKOD BİLİŞİM
+          TUNAHAN ŞİRİN
         </div>
         <div
           style={{

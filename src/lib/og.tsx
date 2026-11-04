@@ -34,8 +34,8 @@ export async function renderOg({ eyebrow, title, subtitle, accent = colors.cyan 
           <div style={{ marginTop: 26, fontSize: 30, lineHeight: 1.3, color: colors.textMuted }}>{subtitle}</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: colors.textDim }}>
-          <span>Tunahan Şirin · Karekod Bilişim</span>
-          <span style={{ color: accent }}>Ünye, Ordu</span>
+          <span>Tunahan ŞİRİN</span>
+          <span style={{ color: accent }}>Yazılım Mimarı & Full Stack Geliştirici</span>
         </div>
       </div>
     ),

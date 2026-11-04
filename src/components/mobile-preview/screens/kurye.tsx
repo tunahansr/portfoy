@@ -102,7 +102,7 @@ export function KuryeVardiya({ state, dispatch, go, reduced }: ScreenProps) {
         <div className="relative mt-5 text-[19px] font-semibold tracking-[-0.02em]">
           {on ? "Görev almaya hazırsın" : "Görev almak için çevrimiçi ol"}
         </div>
-        <div className="relative mt-1 text-[13px] text-(--p-muted)">Bölge: Ünye merkez · Vardiya 09:00–17:00</div>
+        <div className="relative mt-1 text-[13px] text-(--p-muted)">Bölge: Merkez · Vardiya 09:00–17:00</div>
       </Card>
 
       <div className="mx-4 mt-3 grid grid-cols-3 gap-2.5">
@@ -139,7 +139,7 @@ export function KuryeHavuz({ dispatch, go, reduced, active }: ScreenProps) {
   return (
     <ScreenBody withTabs>
       <LargeTitle
-        kicker="Ünye merkez"
+        kicker="Merkez"
         title="Görev havuzu"
         right={
           <span className="mb-1 flex items-center gap-1.5 rounded-full bg-(--p-accent)/15 px-3 py-1.5 text-[12px] font-semibold text-(--p-accent)">
@@ -182,7 +182,7 @@ export function KuryeHavuz({ dispatch, go, reduced, active }: ScreenProps) {
           </div>
         </div>
         <div className="mt-4 flex flex-col gap-0">
-          <Stop icon={Store} label="Restoran" title="Köfteci Usta" sub="Ünye merkez · hazır" accent />
+          <Stop icon={Store} label="Restoran" title="Köfteci Usta" sub="Merkez · hazır" accent />
           <div className="ml-[15px] h-4 border-l-2 border-dashed border-(--p-line)" />
           <Stop icon={MapPin} label="Müşteri" title={demoAddresses.customer} sub="Kapıda teslim" />
         </div>
@@ -277,7 +277,7 @@ export function KuryeDetay({ app, go }: ScreenProps) {
         />
       </div>
       <Card className="mx-4 mt-3 p-4">
-        <Stop icon={Store} label="1 · Teslim al" title="Köfteci Usta" sub="Ünye merkez · Paket hazır" accent />
+        <Stop icon={Store} label="1 · Teslim al" title="Köfteci Usta" sub="Merkez · Paket hazır" accent />
         <div className="ml-[15px] h-5 border-l-2 border-dashed border-(--p-line)" />
         <Stop icon={MapPin} label="2 · Teslim et" title={demoAddresses.customer} sub="Kapı önünde teslim · zile basın" />
       </Card>

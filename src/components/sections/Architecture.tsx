@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ArchitectureDiagram } from "./ArchitectureDiagram";
 
 const t = getDictionary();
-const infraSlugs = ["ag-sunucu-altyapi", "karekod-mail", "scada-ekran-kayit", "esyp-karekod-platform"];
+const infraSlugs = ["ag-sunucu-altyapi", "karekod-mail", "scada-ekran-kayit", "erp-platform"];
 
 export function Architecture() {
   const infra = infraSlugs.map((s) => projects.find((p) => p.slug === s)!).filter(Boolean);

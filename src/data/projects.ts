@@ -338,8 +338,8 @@ export const projects: Project[] = [
     preview: "concept",
   },
   {
-    slug: "esyp-karekod-platform",
-    name: "ESYP / Karekod Platform",
+    slug: "erp-platform",
+    name: "ERP Platform",
     tagline: "Çok kiracılı uygulamaların altında çalışan tenant yönetim katmanı.",
     summary:
       "Yeni müşteri için veritabanı oluşturmaktan domain bağlamaya kadar tenant yaşam döngüsünü otomatikleştiren altyapı ve yönetim platformu.",

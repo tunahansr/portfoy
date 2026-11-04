@@ -19,7 +19,7 @@ export function TenantPlatform() {
 
   return (
     <div ref={ref}>
-      <VisualFrame title="esyp / provisioning-jobs" accent="violet">
+      <VisualFrame title="erp-platform / provisioning-jobs" accent="violet">
         <div className="grid gap-4 p-4 md:grid-cols-[1.1fr_1fr]">
           <div className="rounded-xl border border-line bg-night p-4 font-mono text-[11.5px] leading-relaxed" aria-label="Provisioning job çıktısı (örnek)">
             {jobs.map((j, i) => {

@@ -61,9 +61,6 @@ export function Contact() {
                 </li>
               );
             })}
-            <li data-reveal className="pt-4 text-sm text-dim">
-              {profile.company.name} · {profile.location.city}, {profile.location.region}, {profile.location.country}
-            </li>
           </Reveal>
 
           <ContactForm />

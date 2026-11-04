@@ -4,13 +4,13 @@
  */
 export const tr = {
   meta: {
-    title: "Tunahan Şirin — Yazılım Mimarı & Full Stack Geliştirici",
-    titleTemplate: "%s · Tunahan Şirin",
+    title: "Tunahan ŞİRİN — Yazılım Mimarı & Full Stack Geliştirici",
+    titleTemplate: "%s · Tunahan ŞİRİN",
     description:
       "ERP, POS, SaaS, API entegrasyonları, mobil uygulamalar ve sunucu altyapıları geliştiren yazılım mimarı. Fikirleri gerçek işletmelerde çalışan sistemlere dönüştürüyorum.",
     keywords: [
+      "Tunahan ŞİRİN",
       "Tunahan Şirin",
-      "Karekod Bilişim",
       "yazılım mimarı",
       "full stack geliştirici",
       "ERP yazılımı",
@@ -18,8 +18,6 @@ export const tr = {
       "SaaS geliştirme",
       "API entegrasyonu",
       "mobil uygulama geliştirme",
-      "Ordu yazılım",
-      "Ünye yazılım",
     ],
   },
   nav: {
@@ -59,7 +57,7 @@ export const tr = {
     story: [
       "Bir restoranın akşam yoğunluğunda siparişlerin kaybolmaması, bir servis firmasının süresi geçen tek bir cihazı bile kaçırmaması, bir şirketin satıştan üretime kadar tek bir kaynaktan yönetilmesi… Ürettiğim yazılımlar bu anlar için var.",
       "Uçtan uca çalışıyorum: veritabanı şemasından API tasarımına, mobil uygulamadan mali POS cihazıyla konuşan entegrasyona, sunucu ve ağ altyapısına kadar. Her katmanı bildiğimde sistemin bütününü daha sağlam kurabiliyorum.",
-      "Bu çalışmaları Ünye merkezli Karekod Bilişim çatısı altında, işletmelerin gerçek operasyonlarıyla birlikte geliştiriyorum.",
+      "Her projeyi işletmenin gerçek operasyonuyla birlikte geliştiriyorum; sistem kullanıldıkça birlikte büyüyor.",
     ],
     capabilitiesTitle: "Yetkinlikler",
     capabilities: [
@@ -75,7 +73,6 @@ export const tr = {
       { name: "Business Automation", detail: "WhatsApp Cloud API ve iş akışlarıyla tekrar eden işleri otomatikleştirme." },
     ],
     showreel: "Tanıtım filmini izle",
-    companyNote: "Ticari ve teknolojik çatı",
   },
   work: {
     eyebrow: "Seçili İşler",

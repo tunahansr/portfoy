@@ -1,26 +1,17 @@
 /**
  * Kişisel bilgiler ve iletişim — sitenin her yerinde buradan okunur.
+ * Bu, Tunahan ŞİRİN'in şahsi sitesidir: şirket adı ve adres bilinçli olarak gösterilmez.
  * İsim, telefon, e-posta veya link değişikliği için sadece bu dosyayı düzenleyin.
  */
 export const profile = {
-  name: "Tunahan Şirin",
+  name: "Tunahan ŞİRİN",
   firstName: "Tunahan",
   title: "Full Stack Software Developer · Software Architect · Technology Entrepreneur",
   shortTitle: "Yazılım Mimarı & Full Stack Geliştirici",
-  company: {
-    name: "Karekod Bilişim",
-    url: "https://karekodbilisim.com",
-  },
-  location: {
-    city: "Ünye",
-    region: "Ordu",
-    country: "Türkiye",
-    countryCode: "TR",
-  },
   contact: {
     phoneDisplay: "0 542 153 17 77",
     phoneE164: "+905421531777",
-    email: "bilgi@karekodbilisim.com",
+    email: "tunaha.srn@gmail.com",
     whatsapp: "https://wa.me/905421531777",
   },
   /**

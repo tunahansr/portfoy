@@ -4,10 +4,9 @@ import { getDictionary } from "@/i18n";
 
 export const absoluteUrl = (path = "/") => `${profile.siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
 
-/** schema.org: Person + Organization + WebSite (ana sayfa) */
+/** schema.org: Person + WebSite (ana sayfa). Şahsi site: şirket ve adres bilgisi yayınlanmaz. */
 export function personJsonLd() {
   const t = getDictionary();
-  const orgId = `${profile.company.url}#organization`;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -20,28 +19,7 @@ export function personJsonLd() {
         url: absoluteUrl("/"),
         email: `mailto:${profile.contact.email}`,
         telephone: profile.contact.phoneE164,
-        worksFor: { "@id": orgId },
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: profile.location.city,
-          addressRegion: profile.location.region,
-          addressCountry: profile.location.countryCode,
-        },
         knowsAbout: t.about.capabilities.map((c) => c.name),
-      },
-      {
-        "@type": "Organization",
-        "@id": orgId,
-        name: profile.company.name,
-        url: profile.company.url,
-        email: profile.contact.email,
-        telephone: profile.contact.phoneE164,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: profile.location.city,
-          addressRegion: profile.location.region,
-          addressCountry: profile.location.countryCode,
-        },
       },
       {
         "@type": "WebSite",

@@ -128,9 +128,9 @@ export const demoMenu = [
 ] as const;
 
 export const demoAddresses = {
-  restaurant: "Köfteci Usta · Ünye merkez",
-  customer: "Merkez Mah. · Ünye",
-  customerShort: "Ev · Ünye merkez",
+  restaurant: "Köfteci Usta · Merkez",
+  customer: "Merkez Mah.",
+  customerShort: "Ev · Merkez",
 } as const;
 
 export const demoCouriers = [
@@ -146,7 +146,7 @@ export const demoPackages = [
   { id: "P-1042", from: "Köfteci Usta", to: "Merkez Mah.", status: "Yolda", courier: "Ahmet K.", minutes: 12 },
   { id: "P-1043", from: "Deniz Pide", to: "Sahil Cd.", status: "Hazırlanıyor", courier: "Atanmadı", minutes: 4 },
   { id: "P-1044", from: "Mahalle Burger", to: "Çarşı içi", status: "Yolda", courier: "Mert Y.", minutes: 18 },
-  { id: "P-1045", from: "Tatlı Durağı", to: "Ünye merkez", status: "Teslim edildi", courier: "Burak A.", minutes: 26 },
+  { id: "P-1045", from: "Tatlı Durağı", to: "Merkez", status: "Teslim edildi", courier: "Burak A.", minutes: 26 },
 ] as const;
 
 export const demoStock = {

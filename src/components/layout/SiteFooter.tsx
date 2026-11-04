@@ -19,12 +19,7 @@ export function SiteFooter() {
               <p className="text-sm text-muted">{profile.shortTitle}</p>
             </div>
           </div>
-          <p className="mt-5 text-sm leading-relaxed text-muted">
-            <a href={profile.company.url} target="_blank" rel="noopener" className="text-text underline decoration-line-strong underline-offset-4 hover:decoration-cyan">
-              {profile.company.name}
-            </a>{" "}
-            · {profile.location.city}, {profile.location.region}, {profile.location.country}
-          </p>
+          <p className="mt-5 text-sm leading-relaxed text-muted">{profile.title}</p>
         </div>
         <div>
           <p className="eyebrow mb-4">Bölümler</p>

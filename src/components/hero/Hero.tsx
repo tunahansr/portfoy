@@ -70,7 +70,7 @@ export function Hero() {
 
         <div className="hero-rise flex items-end justify-between gap-6 border-t border-line pt-5 text-xs text-dim" style={d(1000)}>
           <p className="font-mono uppercase tracking-[0.14em]">
-            {profile.company.name} · {profile.location.city}, {profile.location.region}
+            {profile.shortTitle}
           </p>
           <p className="hidden font-mono uppercase tracking-[0.14em] sm:block" aria-hidden>
             {t.hero.scroll} ↓

@@ -41,7 +41,7 @@ const HomeScreen: React.FC = () => {
               color: colors.amber,
             }}
           >
-            Ev · Ünye
+            Ev · Merkez
           </span>
         </div>
         <div style={{ fontFamily: font.display, fontWeight: 700, fontSize: 36, letterSpacing: "-0.02em", marginTop: 4 }}>

@@ -6,7 +6,7 @@ import { profile } from "@/data/profile";
  * YAPILANDIRMA (sunucu ortam değişkenleri — asla NEXT_PUBLIC_ ile başlamaz, tarayıcıya gitmez):
  *   RESEND_API_KEY      Resend (https://resend.com) API anahtarı. Tanımlı değilse uç nokta 503 döner
  *                       ve form kullanıcıya WhatsApp / e-posta ile gönderme seçeneği sunar.
- *   CONTACT_FROM_EMAIL  Doğrulanmış gönderici, ör. "Portföy <form@karekodbilisim.com>"
+ *   CONTACT_FROM_EMAIL  Doğrulanmış gönderici, ör. "Portföy <form@alan-adiniz.com>"
  *   CONTACT_TO_EMAIL    Alıcı (varsayılan: profile.contact.email)
  *
  * Güvenlik: alan doğrulama + uzunluk sınırları, honeypot, IP başına basit hız sınırı

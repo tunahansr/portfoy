@@ -1,6 +1,6 @@
-# Tunahan Şirin — Portföy
+# Tunahan ŞİRİN — Portföy
 
-**Beyond Code — The Systems I Build.** ERP, POS, SaaS, API entegrasyonları, mobil uygulamalar ve altyapı sistemleri geliştiren Tunahan Şirin için animasyon odaklı, etkileşimli ve mobil öncelikli kişisel portföy. Ticari çatı: [Karekod Bilişim](https://karekodbilisim.com).
+**Beyond Code — The Systems I Build.** ERP, POS, SaaS, API entegrasyonları, mobil uygulamalar ve altyapı sistemleri geliştiren Tunahan ŞİRİN için animasyon odaklı, etkileşimli ve mobil öncelikli kişisel portföy.
 
 ## Hızlı başlangıç
 
@@ -32,8 +32,8 @@ Node.js 22+ önerilir (HyperFrames CLI için zorunlu).
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Yayında evet | Canonical adres (sitemap, Open Graph, schema.org). Tanımlı değilse `http://localhost:3000` kullanılır. |
 | `RESEND_API_KEY` | Form için | İletişim formunun e-posta göndermesi için [Resend](https://resend.com) anahtarı. **Yalnızca sunucuda** okunur. |
-| `CONTACT_FROM_EMAIL` | Form için | Resend'de doğrulanmış gönderici, ör. `Portföy <form@karekodbilisim.com>` |
-| `CONTACT_TO_EMAIL` | Hayır | Alıcı; varsayılan `bilgi@karekodbilisim.com` |
+| `CONTACT_FROM_EMAIL` | Form için | Resend'de doğrulanmış gönderici, ör. `Portföy <form@alan-adiniz.com>` |
+| `CONTACT_TO_EMAIL` | Hayır | Alıcı; varsayılan `tunaha.srn@gmail.com` |
 
 Form anahtarları tanımlı değilken `/api/contact` 503 döner ve form ziyaretçiye mesajını **WhatsApp veya e-posta ile hazır şekilde gönderme** seçeneği sunar; mesaj kaybolmaz. WhatsApp, telefon ve e-posta butonları her zaman doğrudan çalışır.
 

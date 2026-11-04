@@ -133,15 +133,15 @@
     data-composition-id="title"
     data-width="1920"
     data-height="1080"
-    data-composition-variables='[{"id":"name","type":"string","label":"İsim","default":"Tunahan Şirin"},{"id":"company","type":"string","label":"Şirket","default":"KAREKOD BİLİŞİM"}]'
+    data-composition-variables='[{"id":"name","type":"string","label":"İsim","default":"Tunahan ŞİRİN"},{"id":"company","type":"string","label":"Unvan","default":"YAZILIM MİMARI"}]'
   >
     <div id="title-block">
-      <h1 id="title-name" aria-label="Tunahan Şirin"></h1>
+      <h1 id="title-name" aria-label="Tunahan ŞİRİN"></h1>
       <p id="title-line">
         <span>Fikirleri</span><span class="serif">çalışan</span><span class="serif">sistemlere</span><span>dönüştürüyorum.</span>
       </p>
       <div id="title-company">
-        <i class="rule"></i><span id="title-company-text" data-var-text="company">KAREKOD BİLİŞİM</span><i class="rule"></i>
+        <i class="rule"></i><span id="title-company-text" data-var-text="company">YAZILIM MİMARI</span><i class="rule"></i>
       </div>
     </div>
   </div>
@@ -149,7 +149,7 @@
     (function () {
       // Split the name into letters for a per-letter reveal.
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
-      const name = vars.name || "Tunahan Şirin";
+      const name = vars.name || "Tunahan ŞİRİN";
       const nameEl = document.getElementById("title-name");
       nameEl.textContent = "";
       for (const ch of name) {
