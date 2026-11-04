@@ -9,10 +9,10 @@ export const profile = {
   title: "Full Stack Software Developer · Software Architect · Technology Entrepreneur",
   shortTitle: "Yazılım Mimarı & Full Stack Geliştirici",
   contact: {
-    phoneDisplay: "0 542 153 17 77",
-    phoneE164: "+905421531777",
+    phoneDisplay: "0 541 899 21 60",
+    phoneE164: "+905418992160",
     email: "tunaha.srn@gmail.com",
-    whatsapp: "https://wa.me/905421531777",
+    whatsapp: "https://wa.me/905418992160",
   },
   /**
    * Site canonical adresi (sitemap, OG, schema.org). Yayın alan adı henüz kesinleşmediği için

@@ -50,7 +50,7 @@ test.describe("işlev", () => {
   test("iletişim bağlantıları gerçek", async ({ page }) => {
     await page.goto("/");
     const contact = page.locator("#iletisim");
-    await expect(contact.locator(`a[href^="https://wa.me/905421531777"]`).first()).toBeVisible();
+    await expect(contact.locator(`a[href^="https://wa.me/905418992160"]`).first()).toBeVisible();
     await expect(contact.locator(`a[href="tel:${profile.contact.phoneE164}"]`)).toHaveCount(1);
     await expect(contact.locator(`a[href="mailto:${profile.contact.email}"]`)).toHaveCount(1);
   });
