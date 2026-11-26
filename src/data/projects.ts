@@ -75,8 +75,11 @@ export interface Project {
   visual: ProjectVisual;
   accent: Accent;
   preview: "concept" | "real" | "none";
-  /** Gerçek ekran görüntüleri: /public/projects/<slug>/... */
-  screens?: { src: string; alt: string }[];
+  /**
+   * Gerçek ekran görüntüleri: /public/projects/<slug>/...
+   * `device` verilmezse masaüstü kabul edilir. width/height dosyanın gerçek piksel ölçüsüdür.
+   */
+  screens?: { src: string; alt: string; width: number; height: number; device?: "desktop" | "mobile" }[];
   /** Motion composition çıktıları (motion/ klasöründen render edilir). */
   media?: {
     video?: string; // /videos/*.mp4
@@ -546,5 +549,12 @@ export const projects: Project[] = [
 export const featuredProjects = projects
   .filter((p) => p.featuredOrder !== undefined)
   .sort((a, b) => (a.featuredOrder ?? 0) - (b.featuredOrder ?? 0));
+
+/**
+ * KURAL (2026-11-26): Sitede yalnızca gerçek ekran görüntüsü gösterilir.
+ * Konsept önizlemeler, konsept filmler ve konsept mobil ekranlar gerçek ekranlar gelene kadar gizlidir;
+ * gerçek ekranlar eklendiğinde filmler de bu ekranlarla yeniden üretilecek.
+ */
+export const hasRealScreens = (p: Project) => p.preview === "real" && (p.screens?.length ?? 0) > 0;
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

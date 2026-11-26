@@ -392,3 +392,6 @@ export const mobileApps: MobileApp[] = [
 export function getMobileApp(id: string): MobileApp | undefined {
   return mobileApps.find((a) => a.id === id);
 }
+
+/** Yalnızca gerçek ve doğrulanmış ekranları olan uygulamalar sitede gösterilir. */
+export const realMobileApps = mobileApps.filter((a) => a.preview === "real" && a.verified);
