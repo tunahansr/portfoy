@@ -2,9 +2,12 @@ import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import { profile, contactLinks } from "@/data/profile";
 import { getDictionary } from "@/i18n";
+import { realMobileApps } from "@/data/mobile-apps";
 import { Monogram } from "@/components/ui/Monogram";
 
 const t = getDictionary();
+// Gerçek mobil ekran yoksa "Mobil" bölümü gizli olduğundan bağlantısı da gösterilmez.
+const navItems = t.nav.items.filter((i) => i.href !== "/#mobil" || realMobileApps.length > 0);
 
 export function SiteFooter() {
   const year = 2026;
@@ -24,7 +27,7 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow mb-4">Bölümler</p>
           <ul className="grid gap-2 text-sm">
-            {t.nav.items.map((i) => (
+            {navItems.map((i) => (
               <li key={i.href}>
                 <Link href={i.href} className="text-muted transition-colors hover:text-text">
                   {i.label}

@@ -4,7 +4,6 @@ import { getDictionary } from "@/i18n";
 import { profile } from "@/data/profile";
 import { HeroCore } from "./HeroCore";
 import { RotatingWord } from "./RotatingWord";
-import { HeroProductStack } from "./HeroProductStack";
 
 const t = getDictionary();
 
@@ -22,7 +21,7 @@ export function Hero() {
       </div>
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-b from-transparent to-graphite" />
 
-      <HeroProductStack />
+      {/* HeroProductStack (konsept ürün kartları) gerçek ekranlar gelene kadar kapalı. */}
 
       <div className="container-x relative mt-auto grid gap-10 pb-10 pt-[min(46svh,24rem)] md:pt-[30svh] lg:pb-16 lg:pt-24">
         <div className="max-w-[min(100%,58rem)]">
