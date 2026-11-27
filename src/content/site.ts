@@ -101,7 +101,7 @@ const tr = {
     title: "Ürünlerden birkaç ekran.",
     items: [
       { src: "/work/entegrasyon-siparisler.jpg", w: 1440, h: 900, caption: "Pazaryeri entegrasyonu · Farklı kanallardan gelen siparişler tek listede." },
-      { src: "/work/yedinizmi-bayi-siparisler.jpg", w: 1600, h: 1000, caption: "Sipariş ve kurye platformu · Kurye, ödeme ve teslim durumu." },
+      { src: "/work/siparis-kurye-paneli.jpg", w: 1600, h: 1000, caption: "Sipariş ve kurye platformu · Kurye, ödeme ve teslim durumu." },
       { src: "/work/obd-panel-canli-veri.jpg", w: 1600, h: 1000, caption: "Araç teşhis paneli · Canlı motor verileri." },
     ],
   },
@@ -241,7 +241,7 @@ const en: typeof tr = {
     title: "A few screens from the products.",
     items: [
       { src: "/work/entegrasyon-siparisler.jpg", w: 1440, h: 900, caption: "Marketplace integration · Orders from different channels in one list." },
-      { src: "/work/yedinizmi-bayi-siparisler.jpg", w: 1600, h: 1000, caption: "Ordering and courier platform · Courier, payment and delivery status." },
+      { src: "/work/siparis-kurye-paneli.jpg", w: 1600, h: 1000, caption: "Ordering and courier platform · Courier, payment and delivery status." },
       { src: "/work/obd-panel-canli-veri.jpg", w: 1600, h: 1000, caption: "Vehicle diagnostics panel · Live engine data." },
     ],
   },
