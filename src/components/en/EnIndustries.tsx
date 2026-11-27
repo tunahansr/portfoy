@@ -3,11 +3,11 @@ import { Reveal } from "@/components/motion/Reveal";
 import { photo, type PhotoSlot } from "@/data/en-photos";
 
 const items: { slot: PhotoSlot; title: string; text: string }[] = [
-  { slot: "cafe", title: "Cafés", text: "QR menu, opening hours and a map so people walk in." },
-  { slot: "restaurant", title: "Restaurants", text: "Menu, table bookings and WhatsApp orders." },
-  { slot: "petshop", title: "Pet shops", text: "Products, services and an online store." },
-  { slot: "salon", title: "Salons & barbers", text: "Prices, gallery and online appointments." },
-  { slot: "realestate", title: "Estate agents", text: "Listings, team and quick enquiries." },
+  { slot: "cafe", title: "Business websites", text: "Who you are, what you offer and how to reach you." },
+  { slot: "petshop", title: "Online stores", text: "Products, payments and orders in one place." },
+  { slot: "salon", title: "Booking websites", text: "Online appointments, prices and a gallery." },
+  { slot: "restaurant", title: "Menus & ordering", text: "Digital menus, QR codes, table bookings and WhatsApp orders." },
+  { slot: "realestate", title: "Custom software & apps", text: "Dashboards, mobile apps and integrations for how you work." },
 ];
 
 export function EnIndustries() {
@@ -16,10 +16,10 @@ export function EnIndustries() {
       <div className="container-x">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <h2 id="industries-title" className="max-w-2xl font-display text-[clamp(1.7rem,3.6vw,2.6rem)] font-semibold leading-tight tracking-[-0.025em] text-ink">
-            Made for the businesses on your high street
+            Everything your business needs online
           </h2>
           <p className="max-w-md text-ink-soft">
-            Every site is designed around what your customers need to do: find you, check your menu or prices, and get in touch.
+            From a simple business website to an online store or a custom app. Pick what you need today and grow from there.
           </p>
         </div>
         <Reveal as="ul" className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">

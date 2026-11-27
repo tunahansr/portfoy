@@ -11,9 +11,9 @@ import { EnFooter } from "@/components/en/EnFooter";
  * İngilizce kök layout (/en): yurt dışındaki küçük işletmeler için açık temalı satış sayfası.
  * Türkçe site app/(site)/layout.tsx altındadır; iki dil arasında geçiş tam sayfa yüklemesidir.
  */
-const title = "Websites & QR menus for small businesses — Tunahan Şirin";
+const title = "Websites, online stores and apps for small businesses — Tunahan Şirin";
 const description =
-  "Fixed-price websites, QR menus, booking sites and online stores for cafés, restaurants, pet shops, salons and estate agents. Free demo first, ready in 7 days. Prices in USD.";
+  "Fixed-price business websites, online stores, booking sites, redesigns and custom apps for small businesses. Free demo first. Prices in USD.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),

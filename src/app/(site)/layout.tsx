@@ -7,8 +7,8 @@ import { defaultLocale, htmlLang, ogLocale } from "@/i18n/config";
 import { motionPrefInitScript } from "@/lib/motion-pref";
 import { personJsonLd, serializeJsonLd } from "@/lib/seo";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { SiteHeader } from "@/components/navigation/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SadeHeader } from "@/components/sade/SadeHeader";
+import { SadeFooter } from "@/components/sade/SadeFooter";
 
 const t = getDictionary();
 
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07090D",
-  colorScheme: "dark",
+  themeColor: "#f7f5f1",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -45,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={htmlLang[defaultLocale]}
+      data-theme="light"
       className={`${fontVariables} antialiased`}
       suppressHydrationWarning
     >
@@ -58,16 +59,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-svh">
         <a
           href="#icerik"
-          className="sr-only z-[100] rounded-full bg-text px-5 py-3 font-medium text-graphite focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="sr-only z-[100] rounded-full bg-ink px-5 py-3 font-medium text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           {t.nav.skip}
         </a>
         <MotionProvider>
-          <SiteHeader />
+          <SadeHeader />
           <main id="icerik" tabIndex={-1} className="outline-none">
             {children}
           </main>
-          <SiteFooter />
+          <SadeFooter />
         </MotionProvider>
       </body>
     </html>
