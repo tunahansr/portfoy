@@ -100,7 +100,7 @@ export const packages: OfferPackage[] = [
     includes: [
       "Product catalogue with photos, prices and options",
       "Shopping cart and checkout",
-      "Payment setup (Stripe or PayPal)",
+      "Card payment setup with your chosen payment provider",
       "Order notifications by email",
       "Delivery and pick-up options",
       "Add and edit products yourself",
@@ -161,7 +161,7 @@ export const steps = [
 export const faq = [
   {
     q: "How do I pay?",
-    a: "All prices are in US dollars. You can pay by PayPal, Payoneer or Wise, whichever is easiest for you. You only pay after you've seen and approved your demo.",
+    a: "All prices are in US dollars. Payment is by bank transfer (SWIFT) to my Garanti BBVA account: 50% when you approve your demo, 50% before launch. Every payment is invoiced.",
   },
   {
     q: "Do I need my own hosting or domain?",

@@ -262,3 +262,17 @@ html.reduce-motion *::after {
   animation: rise 1.1s var(--ease-out) both;
   animation-delay: calc(var(--d, 0) * 1ms);
 }
+
+/* Giriş kod paneli: satırlar sırayla belirir, imleç yanıp söner (reduced-motion'da anında görünür). */
+.code-line {
+  animation: rise 0.7s var(--ease-out) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+.caret {
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}

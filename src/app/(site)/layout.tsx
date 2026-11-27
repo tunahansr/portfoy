@@ -7,8 +7,8 @@ import { defaultLocale, htmlLang, ogLocale } from "@/i18n/config";
 import { motionPrefInitScript } from "@/lib/motion-pref";
 import { personJsonLd, serializeJsonLd } from "@/lib/seo";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { SadeHeader } from "@/components/sade/SadeHeader";
-import { SadeFooter } from "@/components/sade/SadeFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 const t = getDictionary();
 
@@ -64,11 +64,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {t.nav.skip}
         </a>
         <MotionProvider>
-          <SadeHeader />
+          <SiteHeader lang="tr" />
           <main id="icerik" tabIndex={-1} className="outline-none">
             {children}
           </main>
-          <SadeFooter />
+          <SiteFooter lang="tr" />
         </MotionProvider>
       </body>
     </html>

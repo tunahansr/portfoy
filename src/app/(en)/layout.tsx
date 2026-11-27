@@ -4,16 +4,16 @@ import { fontVariables } from "@/lib/fonts";
 import { profile } from "@/data/profile";
 import { motionPrefInitScript } from "@/lib/motion-pref";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { EnHeader } from "@/components/en/EnHeader";
-import { EnFooter } from "@/components/en/EnFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { content } from "@/content/site";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
 /**
  * İngilizce kök layout (/en): yurt dışındaki küçük işletmeler için açık temalı satış sayfası.
  * Türkçe site app/(site)/layout.tsx altındadır; iki dil arasında geçiş tam sayfa yüklemesidir.
  */
-const title = "Websites, online stores and apps for small businesses — Tunahan Şirin";
-const description =
-  "Fixed-price business websites, online stores, booking sites, redesigns and custom apps for small businesses. Free demo first. Prices in USD.";
+const title = content.en.meta.title;
+const description = content.en.meta.description;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
@@ -57,11 +57,11 @@ export default function EnRootLayout({ children }: { children: React.ReactNode }
           Skip to content
         </a>
         <MotionProvider>
-          <EnHeader />
+          <SiteHeader lang="en" />
           <main id="main" tabIndex={-1} className="outline-none">
             {children}
           </main>
-          <EnFooter />
+          <SiteFooter lang="en" />
         </MotionProvider>
       </body>
     </html>
