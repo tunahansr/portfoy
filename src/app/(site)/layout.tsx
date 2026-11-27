@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import { fontVariables } from "@/lib/fonts";
 import { profile } from "@/data/profile";
 import { getDictionary } from "@/i18n";
 import { defaultLocale, htmlLang, ogLocale } from "@/i18n/config";
@@ -9,22 +9,6 @@ import { personJsonLd, serializeJsonLd } from "@/lib/seo";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-
-const geist = Geist({ variable: "--font-geist", subsets: ["latin", "latin-ext"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin", "latin-ext"], display: "swap" });
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  axes: ["opsz", "wdth"],
-});
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin", "latin-ext"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 const t = getDictionary();
 
@@ -61,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={htmlLang[defaultLocale]}
-      className={`${geist.variable} ${geistMono.variable} ${bricolage.variable} ${instrument.variable} antialiased`}
+      className={`${fontVariables} antialiased`}
       suppressHydrationWarning
     >
       <head>

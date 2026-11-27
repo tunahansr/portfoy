@@ -8,6 +8,7 @@ import { getDictionary } from "@/i18n";
 import { profile, contactLinks } from "@/data/profile";
 import { useMotionPref } from "@/components/motion/MotionProvider";
 import { Monogram } from "@/components/ui/Monogram";
+import { LanguageSwitch } from "./LanguageSwitch";
 
 const t = getDictionary();
 
@@ -85,6 +86,7 @@ export function SiteHeader() {
           </ul>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitch current="tr" />
             <button
               type="button"
               onClick={toggle}
