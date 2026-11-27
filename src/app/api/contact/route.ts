@@ -23,8 +23,16 @@ const escapeHtml = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
+  // Cloudflare → nginx → uygulama: önce Cloudflare'in yazdığı gerçek istemci IP'si, sonra nginx'in
+  // x-real-ip'i, en son X-Forwarded-For'un en sağdaki (proxy'nin eklediği) değeri.
+  const xff = req.headers.get("x-forwarded-for")?.split(",").map((s) => s.trim()).filter(Boolean);
+  const ip = req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") || xff?.[xff.length - 1] || "unknown";
   const now = Date.now();
+  // Eski kayıtları temizle, haritanın sınırsız büyümesini engelle
+  if (hits.size > 5000) {
+    for (const [k, v] of hits) if (!v.some((t) => now - t < WINDOW_MS)) hits.delete(k);
+    if (hits.size > 5000) hits.clear();
+  }
   const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
   if (recent.length >= MAX_PER_WINDOW) {
     return Response.json({ ok: false, error: "rate_limited" }, { status: 429 });
@@ -45,6 +53,8 @@ export async function POST(req: Request) {
   const phone = clean(body.phone, 40);
   const topic = clean(body.topic, 80);
   const message = clean(body.message, 5000);
+  const business = clean(body.business, 160);
+  const lang = body.lang === "en" ? "en" : "tr";
   const consent = body.consent === "1" || body.consent === true;
 
   if (!name || !emailRe.test(email) || message.length < 20 || !consent) {
@@ -62,14 +72,14 @@ export async function POST(req: Request) {
 
   const to = process.env.CONTACT_TO_EMAIL || profile.contact.email;
   const html = `<h2>Portföy sitesinden yeni mesaj</h2>
-<p><b>Ad:</b> ${escapeHtml(name)}<br/><b>E-posta:</b> ${escapeHtml(email)}<br/><b>Telefon:</b> ${escapeHtml(phone || "-")}<br/><b>Konu:</b> ${escapeHtml(topic || "-")}</p>
+<p><b>Ad:</b> ${escapeHtml(name)}<br/><b>E-posta:</b> ${escapeHtml(email)}<br/><b>Telefon:</b> ${escapeHtml(phone || "-")}<br/><b>Konu:</b> ${escapeHtml(topic || "-")}${business ? `<br/><b>İşletme:</b> ${escapeHtml(business)}` : ""}<br/><b>Dil:</b> ${lang.toUpperCase()}</p>
 <p style="white-space:pre-wrap">${escapeHtml(message)}</p>`;
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from, to: [to], reply_to: email, subject: `Proje talebi: ${topic || name}`, html }),
+      body: JSON.stringify({ from, to: [to], reply_to: email, subject: lang === "en" ? `Website enquiry (EN): ${topic || "-"} · ${business || name}` : `Proje talebi: ${topic || name}`, html }),
     });
     if (!res.ok) return Response.json({ ok: false, error: "provider_error" }, { status: 502 });
     return Response.json({ ok: true });

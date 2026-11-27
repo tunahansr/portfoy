@@ -12,6 +12,8 @@ export const profile = {
     phoneDisplay: "0 541 899 21 60",
     phoneE164: "+905418992160",
     email: "tunaha.srn@gmail.com",
+    /** İngilizce (/en) sayfada gösterilen iş e-postası. Kişisel Gmail adresi orada gösterilmez. */
+    businessEmail: "info@tunahansirin.com",
     whatsapp: "https://wa.me/905418992160",
   },
   /**
@@ -25,6 +27,7 @@ export const profile = {
 export const contactLinks = {
   tel: `tel:${profile.contact.phoneE164}`,
   mailto: `mailto:${profile.contact.email}`,
+  businessMailto: `mailto:${profile.contact.businessEmail}`,
   whatsapp: profile.contact.whatsapp,
   whatsappWithText: (text: string) =>
     `${profile.contact.whatsapp}?text=${encodeURIComponent(text)}`,
