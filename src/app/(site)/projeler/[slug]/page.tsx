@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
-import { categories, getProject, projects, statusLabels } from "@/data/projects";
+import { categories, getProject, hasRealScreens, projects, statusLabels } from "@/data/projects";
 import { contactLinks } from "@/data/profile";
 import { getDictionary } from "@/i18n";
 import { projectJsonLd, serializeJsonLd } from "@/lib/seo";
-import { ProjectVisual } from "@/components/visuals/ProjectVisual";
 import { accentVar } from "@/components/visuals/VisualFrame";
-import { LazyVideo } from "@/components/ui/LazyVideo";
 import { Reveal } from "@/components/motion/Reveal";
-import { RemotionShowcase } from "@/components/motion/RemotionShowcase";
+import { ScreenGallery } from "@/components/projects/ScreenGallery";
 
 const t = getDictionary();
 const catLabel = (id: string) => categories.find((c) => c.id === id)?.label ?? id;
@@ -39,7 +37,7 @@ export default async function ProjectPage({ params }: PageProps<"/projeler/[slug
   const idx = projects.findIndex((x) => x.slug === p.slug);
   const next = projects[(idx + 1) % projects.length];
   const accent = accentVar[p.accent];
-  const hasVisual = p.visual !== "none";
+  const real = hasRealScreens(p);
 
   return (
     <article style={{ "--accent": accent } as React.CSSProperties} className="relative">
@@ -65,26 +63,10 @@ export default async function ProjectPage({ params }: PageProps<"/projeler/[slug
         </p>
       </header>
 
-      {(hasVisual || p.media) && (
-        <section aria-label="Ürün önizlemesi" className="container-x">
-          <div className="grid gap-8">
-            {p.media?.remotionId && <RemotionShowcase id={p.media.remotionId} poster={p.media.poster} label={`${p.name} ürün showcase'i`} />}
-            {hasVisual && (
-              <div className="mx-auto w-full max-w-5xl">
-                <ProjectVisual project={p} />
-                {p.preview === "concept" && (
-                  <p className="mt-3 text-xs text-dim">
-                    <span className="font-mono uppercase tracking-[0.12em] text-muted">{t.work.labels.concept}</span> — {t.work.labels.conceptNote}
-                  </p>
-                )}
-              </div>
-            )}
-            {p.media?.video && p.media.engine === "hyperframes" && (
-              <figure className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-line bg-night">
-                <LazyVideo src={p.media.video} poster={p.media.poster} label={`${p.name} tanıtım animasyonu`} className="aspect-video" fallback={null} />
-                <figcaption className="border-t border-line px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-dim">Motion film · HyperFrames</figcaption>
-              </figure>
-            )}
+      {real && (
+        <section aria-label="Ekran görüntüleri" className="container-x">
+          <div className="mx-auto w-full max-w-6xl">
+            <ScreenGallery project={p} priority />
           </div>
         </section>
       )}
@@ -184,7 +166,7 @@ export default async function ProjectPage({ params }: PageProps<"/projeler/[slug
             </section>
           )}
 
-          {p.preview === "none" && <p className="rounded-2xl border border-dashed border-line p-6 text-sm text-dim">{t.project.noMaterial}</p>}
+          {!real && <p className="rounded-2xl border border-dashed border-line p-6 text-sm text-dim">{t.project.noMaterial}</p>}
         </div>
       </div>
 

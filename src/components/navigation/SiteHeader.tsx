@@ -5,12 +5,15 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, Pause, Play, ArrowUpRight, Phone, Mail, MessageCircle } from "lucide-react";
 import { getDictionary } from "@/i18n";
+import { realMobileApps } from "@/data/mobile-apps";
 import { profile, contactLinks } from "@/data/profile";
 import { useMotionPref } from "@/components/motion/MotionProvider";
 import { Monogram } from "@/components/ui/Monogram";
 import { LanguageSwitch } from "./LanguageSwitch";
 
 const t = getDictionary();
+// Gerçek mobil ekran yoksa "Mobil" bölümü gizli olduğundan bağlantısı da gösterilmez.
+const navItems = t.nav.items.filter((i) => i.href !== "/#mobil" || realMobileApps.length > 0);
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -73,7 +76,7 @@ export function SiteHeader() {
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
-            {t.nav.items.map((item) => (
+            {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -133,7 +136,7 @@ export function SiteHeader() {
             className="fixed inset-x-0 bottom-0 top-[var(--header-h)] flex flex-col overflow-y-auto bg-graphite lg:hidden"
           >
             <ul className="container-x flex flex-col pt-6">
-              {[...t.nav.items, { href: "/#iletisim", label: "İletişim" }].map((item, i) => (
+              {[...navItems, { href: "/#iletisim", label: "İletişim" }].map((item, i) => (
                 <motion.li
                   key={item.href}
                   initial={{ opacity: 0, y: 16 }}
