@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "turkuaz-cafe",
+    "name": "Turkuaz Cafe",
+    "location": "Whangārei, New Zealand",
+    "category": "Cafe",
+    "url": "https://tunahansirin.com/demo/turkuaz-cafe/"
+  },
+  {
+    "slug": "meze-turkish-darlington",
+    "name": "Meze Turkish Restaurant",
+    "location": "Darlington, United Kingdom",
+    "category": "Restaurant",
+    "url": "https://tunahansirin.com/demo/meze-turkish-darlington/"
+  },
+  {
+    "slug": "lancaster-dispensing-co",
+    "name": "The Lancaster Dispensing Company",
+    "location": "Lancaster, USA",
+    "category": "Restaurant",
+    "url": "https://tunahansirin.com/demo/lancaster-dispensing-co/"
+  },
+  {
+    "slug": "tiger-ramen",
+    "name": "Tiger Ramen",
+    "location": "Kamloops, Canada",
+    "category": "Restaurant",
+    "url": "https://tunahansirin.com/demo/tiger-ramen/"
+  },
+  {
+    "slug": "hustle-coffee",
+    "name": "Hustle Coffee",
+    "location": "Bendigo, Australia",
+    "category": "Cafe",
+    "url": "https://tunahansirin.com/demo/hustle-coffee/"
+  },
+  {
+    "slug": "cafe-roubaix",
+    "name": "Cafe Roubaix",
+    "location": "Bendigo, Australia",
+    "category": "Cafe",
+    "url": "https://tunahansirin.com/demo/cafe-roubaix/"
+  },
+  {
+    "slug": "lucky-paws-hobart",
+    "name": "Lucky Paws",
+    "location": "Hobart, Tasmania",
+    "category": "Pet shop",
+    "url": "https://tunahansirin.com/demo/lucky-paws-hobart/"
+  },
+  {
+    "slug": "dereks-pet-shop",
+    "name": "Derek's Pet Shop",
+    "location": "Moncton, New Brunswick",
+    "category": "Pet shop",
+    "url": "https://tunahansirin.com/demo/dereks-pet-shop/"
+  },
+  {
+    "slug": "coast-to-coast-exotics",
+    "name": "Coast To Coast Exotics",
+    "location": "Darlington, United Kingdom",
+    "category": "Pet shop",
+    "url": "https://tunahansirin.com/demo/coast-to-coast-exotics/"
+  },
+  {
+    "slug": "ozark-aquarium-design",
+    "name": "Ozark Aquarium Design",
+    "location": "Springfield, USA",
+    "category": "Pet shop",
+    "url": "https://tunahansirin.com/demo/ozark-aquarium-design/"
+  },
+  {
+    "slug": "panther-perches",
+    "name": "Panther Perches",
+    "location": "Moncton, Canada",
+    "category": "Pet shop",
+    "url": "https://tunahansirin.com/demo/panther-perches/"
+  },
+  {
+    "slug": "emmas-pet-shop",
+    "name": "Emma's Pet Shop",
+    "location": "Swansea, United Kingdom",
+    "category": "Pet shop",
+    "url": "https://tunahansirin.com/demo/emmas-pet-shop/"
+  }
+]
